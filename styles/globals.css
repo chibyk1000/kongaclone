@@ -1,0 +1,124 @@
+*{
+  font-family: 'Open Sans', sans-serif;
+}
+ 
+.swiper-button-prev, .swiper-button-next {
+ background-color: rgba(235, 229, 229, 0.628);
+ box-shadow: 0 0 5px #d0cccc ;
+ width: 3rem !important;
+ height: 3rem !important;
+clip-path: circle();
+visibility: hidden;
+
+}
+.swiper:hover .swiper-button-prev, .swiper:hover .swiper-button-next{
+  visibility: visible;
+}
+
+.hover-it:hover .iconfa{
+  fill: #4267B2;
+}
+.hover-it:hover .icontw{
+  fill: #1DA1F2;
+}
+.hover-it:hover .iconin{
+color: #f09433; 
+color: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+color: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+color: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 )
+}
+.bd{
+  background-color: #333 !important;
+}
+.decorated{
+     overflow: hidden;
+     text-align: center;
+ }
+.decorated > span{
+    position: relative;
+    display: inline-block;
+}
+.decorated > span:before, .decorated > span:after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    border-bottom: 2px solid;
+    width: 100vw;
+    margin: 0 20px;
+}
+.decorated > span:before{
+    right: 100%;
+}
+.decorated > span:after{
+    left: 100%;
+}
+.account:hover .drop-menu{
+  display: block;
+  animation: movedrop .7s ease-in-out;
+}
+.drop-menu{
+  display: none;
+}
+.hover-it:hover .iconyt{
+  fill: 	#FF0000
+}
+.swiper{
+  height: 100%;
+}
+.swiper-pagination-bullet{
+  background-color: white !important;
+  border: 1px solid;
+}
+.swiper-pagination-bullet-active{
+  background-color: black !important;
+}
+.swiper-button-prev::after, .swiper-button-next::after{
+  font-size: 1.4rem !important;
+  font-weight: 900;
+  color: rgb(78, 75, 75)
+
+}
+
+.h-f{
+  height: 100% !important;
+}
+.bg-bar, .popular_cat{
+  background: #94004f url('https://res.cloudinary.com/staging-konga-com/image/upload/f_auto,q_auto/v1654791685/assets/images/homepage/Bg-Icons.png') no-repeat;
+  background-size: 100% auto
+}
+
+.popular_cat{
+background-color: #333
+}
+.cat{
+display: none;
+}
+.move{
+  animation: move;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in;
+  
+}
+@keyframes movedrop{
+  from { top: 40px
+  }
+  to{
+top: 55px;
+  }
+}
+@keyframes move {
+from{
+    right: -50%;
+  }
+
+  to{
+right: 0 ;
+  }
+}
+.popular:hover .cat{
+display: block
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
