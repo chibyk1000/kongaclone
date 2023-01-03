@@ -5,7 +5,7 @@ const connectDB = () => {
 
     mongoose
       .connect(  
-        process.env.MONGODB_URI || "mongodb://localhost:27017/KongaClone",
+        process.env.MONGODB_URI,
         {
           useNewUrlParser: true,
         }
