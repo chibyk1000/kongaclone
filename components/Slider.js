@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/bundle";
-const Slider () => {
+const Slider = () => {
   const sliderImage = [
     "https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/v1661683428/contentservice/products.gif_HJmokPpdJi.gif",
     "https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/v1653388292/contentservice/payday.gif_H1qZEE9Dc.gif",
