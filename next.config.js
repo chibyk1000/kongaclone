@@ -1,7 +1,19 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true,
+//   swcMinify: true,
+// }
 
-module.exports = nextConfig
+module.exports = {
+  env: {
+    BASE_URL: "http://localhost:3000",
+    MONGODB_URL: "mongodb://localhost:27017/KONGA_CLONE",
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
+      "pk_test_51M56IyK4G3r6RCaZDmdtbo5e7RHaQtXFUAipPow57AmACKG0FV9bZP2hF506esX69Lv8FIrQXy0CMY8kOYeghrvx00OmvU3uNd",
+  },
+  reactStrictMode: true,
+  images: {
+    domains: ["res.cloudinary.com", "www-konga-com-res.cloudinary.com"],
+  },
+};
+// module.exports = nextConfig

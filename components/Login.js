@@ -1,8 +1,46 @@
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { setLoggedin } from "../store/userSlice";
+import { wrapper } from "../store/store";
+import axios from "axios";
 
-
-const Login = ({collapse, setCollapse}) => {
+const Login = ({ collapse, setCollapse }) => {
+ 
+  const [showPass, setShowPass] = useState(false);
+  const dispatch = useDispatch()
   
+  const router = useRouter();
+
+  // console.log(loggedin, isloading);
+  const [input, setInput] = useState({
+    emailorphone: "",
+
+    password: "",
+  });
+     const handleChange = (e) => {
+       const { name, value } = e.target;
+       setInput({ ...input, [name]: value });
+     };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("/api/auth/login", {
+        body: input,
+      });
+      // await res.json()
+      if (res.status === 200) {
+        console.log(res);
+        dispatch(setLoggedin(true))
+        setCollapse(true)
+        router.reload()
+    
+      }
+    } catch (error) {
+      // console.log(error)
+    }
+  };
     return (
       <>
         <section
@@ -24,7 +62,7 @@ const Login = ({collapse, setCollapse}) => {
                 x Close
               </button>
             </header>
-            <section className="px-3">
+            <form className="px-3" onSubmit={handleSubmit}>
               <div className="my-6">
                 <p className="text-[0.74rem] font-semibold mb-2">
                   Email Address or Phone Number
@@ -33,27 +71,32 @@ const Login = ({collapse, setCollapse}) => {
                   type="text"
                   className="outline-none border w-full block py-2 border-black placeholder:text-sm rounded-sm pl-4"
                   placeholder="Email Address OR Phone Number"
+                  onChange={handleChange}
+                  name="emailorphone"
                 />
               </div>
               <div className="my-6">
                 <section className="flex justify-between items-center mb-2">
                   <p className="text-[0.74rem] font-semibold ">Password</p>
                   <Link href="">
-
-
-                  <a className="text-[0.74rem] underline text-[#C15576] ">
-                    Forgot Password
-                  </a>
+                    <a className="text-[0.74rem] underline text-[#C15576] ">
+                      Forgot Password
+                    </a>
                   </Link>
                 </section>
                 <div className="flex border  border-black py-2 px-4 ">
                   <input
-                    type="password"
+                    type={showPass ? "text" : `password`}
                     className="outline-none  w-full block placeholder:text-sm rounded-sm "
                     placeholder="Enter Password"
+                    onChange={handleChange}
+                    name="password"
                   />
-                  <button className="text-[#47BA88] text-[0.74rem]">
-                    Show
+                  <button
+                    className="text-[#47BA88] text-[0.74rem]"
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    {showPass ? "Hide" : "Show"}
                   </button>
                 </div>
               </div>
@@ -87,7 +130,7 @@ const Login = ({collapse, setCollapse}) => {
                   />
                 </a>
               </section>
-            </section>
+            </form>
 
             <div className="fixed w-[30%] bottom-0 bg-[#F2F2F2]  flex justify-center  py-5 shadow-lg shadow-slate-500">
               <Link href="/account/signup">

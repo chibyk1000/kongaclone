@@ -1,9 +1,6 @@
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  IoIosArrowDropleftCircle,
-  IoIosArrowDroprightCircle,
-} from "react-icons/io";
+import Image from "next/image";
 // Import Swiper styles
 import "swiper/css";
 import 'swiper/css/bundle'
@@ -41,11 +38,15 @@ export default () => {
           {
               sliderImage.map((image, i) => { 
                   return (
-                    <SwiperSlide key={i} className="w-full h-[5rem]">
+                    <SwiperSlide key={i} className="w-full md:h-[4rem]">
                       <img
                         src={image}
                         alt=""
-                        className="w-full h-full rounded-md"
+                        // width={"100vw"}
+                        // layout="responsive"
+                        // objectFit="contain"
+                        // height={"100%"}
+                        className=" rounded-md w-full h-full "
                       />
                     </SwiperSlide>
                   ); 

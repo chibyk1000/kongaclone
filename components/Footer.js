@@ -19,33 +19,33 @@ const Footer = () => {
 
   return (
     <>
-      <section className="bg-[#2E2E2E] grid grid-cols-footer1 px-[4rem] justify- py-4">
+      <section className="bg-[#2E2E2E] hidden md:grid md:grid-cols-footer1 md:px-[4rem] justify- py-4">
         <section className="flex  mr-3">
-          <div className="bg-white  rounded-[50%] w-8 h-8 flex justify-center items-center">
+          <div className="bg-white  rounded-[50%] md:w-8 h-8 flex justify-center items-center">
             <GrMail color="" fill="" />
           </div>
           <div className="text-[#B5B5A8] hover:text-white ml-3">
             <h3 className=" font-bold uppercase text-[.9rem] ">
               Email Support
             </h3>
-            <a href="" className="text-[.9rem]">
+            <a href="" className="md:text-[.9rem]">
               help@konga.com
             </a>
           </div>
         </section>
         <section className="flex items-center">
-          <div className="bg-white rounded-[50%] w-8 h-8 flex justify-center items-center">
+          <div className="bg-white rounded-[50%] md:w-8 h-8 flex justify-center items-center">
             <FaPhone color="" fill="" />
           </div>
           <div className="text-[#B5B5A8] hover:text-white ml-3">
-            <h3 className=" font-bold uppercase text-[.9rem]">PHONE SUPPORT</h3>
+            <h3 className=" font-bold uppercase md:text-[.9rem]">PHONE SUPPORT</h3>
             <a href="" className="text-sm">
               0708 063 5700, 0809 460 5555, 01 888 3435
             </a>
           </div>
         </section>
         <section className="flex items-center">
-          <div className="bg-white rounded-[50%] w-8 h-8 flex justify-center items-center">
+          <div className="bg-white rounded-[50%] md:w-8 h-8 flex justify-center items-center">
             <FaWhatsapp color="" fill="" />
           </div>
           <div className="text-[#B5B5A8] hover:text-white ml-3">
@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
         </section>
         <section className="flex items-center">
-          <div className="text-[#B5B5A8] hover:text-white ml-3">
+          <div className="text-[#B5B5A8] hover:text-white md:ml-3">
             <h3 className=" font-bold uppercase text-[.9rem]">
               GET LATEST DEALS
             </h3>
@@ -65,20 +65,20 @@ const Footer = () => {
             </a>
           </div>
         </section>
-        <section className="flex items-center">
-          <form action="" className="flex">
+        <section className="">
+          <form action="" className="flex w-full">
             <input
-              type="text"
+              type="text"  
               placeholder="Email Address"
-              className="py-2 pl-2 rounded-bl-md rounded-tl-md outline-none"
+              className="py-2 lg:w-10/12 pl-2 sm:w-full sm:rounded-md md:rounded-tr-none md:rounded-br-none rounded-bl-md text-sm rounded-tl-md  outline-none"
             />
-            <button className="bg-[#ED017F] text-white px-2 rounded-br-md rounded-tr-md text-sm">
+            <button className="bg-[#ED017F] hidden lg:block w-4/12 text-white  rounded-br-md rounded-tr-md text-sm">
               Subscribe
             </button>
           </form>
         </section>
       </section>
-      <section className="bg-[#0C0C0C] p-10">
+      <section className="bg-[#0C0C0C] p-10 hidden md:block">
         <div className="flex justify-between ">
           <List list={footerList1} headings="ABOUT KONGA" />
           <List list={footerList2} headings="PAYMENT" />

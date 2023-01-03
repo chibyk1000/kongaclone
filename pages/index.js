@@ -4,13 +4,18 @@ import { useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 import Deals from '../components/Deals';
 import Footer from '../components/Footer';
-
+import { useSelector, useDispatch } from "react-redux";
 import Login from '../components/Login';
 import Navbar from '../components/Navbar'
 import Slider from '../components/Slider';
+import axios from 'axios';
+import { getUser, setLoggedin } from '../store/userSlice';
+import { wrapper } from '../store/store';
 
 
 export default function Home() {
+
+
   const [collapse, setCollapse] = useState(true);
 
   const imagesKonga = [
@@ -293,35 +298,35 @@ const recommended = [
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
-      <main className="bg-[#ed017f] py-5 px-14">
+      <main className="bg-[#ed017f] py-5 md:px-14 px-4">
         {/* banner section starts */}
-        <div className="grid grid-cols-slide grid-rows-2 h-[23rem] gap-4">
-          <div className="col-start-1 col-end-2 row-start-1 row-end-3">
+        <div className="md:grid md:grid-cols-slide md:grid-rows-2 h-10 md:h-[23rem] gap-4">
+          <div className="md:col-start-1 md:col-end-2 md:row-start-1 md:row-end-3">
             <Slider />
           </div>
-          <div className="col-start-2 col-end-3">
+
+          <div className="hidden md:col-start-2 col-end-3">
             <img
               src="https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/v1661761149/contentservice/box%20fcmb.jpg_ry-tLgcks.jpg"
               alt=""
               className="w-full h-full rounded-md"
             />
           </div>
-          <div>
+          <div className="hidden md:block">
             <img
               src="https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/v1659200173/contentservice/access.gif_HkE3z1Xp5.gif"
               alt=""
               className="w-full h-full rounded-md"
             />
           </div>
-          <div>
+          <div className="hidden md:block">
             <img
               src="https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/v1661771902/contentservice/product_of_the_week_360.gif_B1VKem5Jo.gif"
               alt=""
               className="w-full h-full rounded-md"
             />
           </div>
-          <div>
+          <div className="hidden md:block">
             <img
               src="https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/v1659973509/contentservice/edo.gif_HypYyh0p9.gif"
               alt=""
@@ -334,7 +339,7 @@ const recommended = [
         {/* konga stores links */}
 
         <section className="my-3">
-          <ul className="grid grid-cols-6 gap-2 w-[99%]">
+          <ul className="md:grid md:grid-cols-6 hidden gap-2 w-[99%]">
             {imagesKonga.map((image, i) => {
               return (
                 <li key={i} className="bg-white rounded-[4px] p-2">
@@ -359,7 +364,7 @@ const recommended = [
         {/* Today deals ends */}
 
         {/* Categories */}
-        <section className="bg-white p-2 my-5">
+        <section className="bg-white p-2 my-5 hidden md:block">
           <ul className="grid grid-cols-6 gap-5 ">
             {categoryImg.map((img, i) => {
               return (
@@ -393,7 +398,7 @@ const recommended = [
           <header className="popular_cat text-white h-12 pl-4 flex items-center">
             Popular Categories
           </header>
-          <div className="grid grid-cols-5 grid-rows-2 h-[26.5rem] gap-2 p-3">
+          <div className="grid md:grid-cols-5 grid-cols-small overflow-auto grid-rows-2 h-[26.5rem] gap-2 p-3">
             {popular_cat.map((items) => {
               return (
                 <div
@@ -441,7 +446,7 @@ const recommended = [
         {/* popular categories */}
 
         {/* ads */}
-        <section className="grid grid-cols-2 bg-white p-2 my-4">
+        <section className="grid md:grid-cols-2 bg-white p-2 my-4">
           <a href="">
             <img src="/pics/ads2.jpg" alt="" className="rounded-sm" />
           </a>
@@ -452,7 +457,7 @@ const recommended = [
         {/* ads */}
 
         {/* Bonus */}
-        <section className="grid grid-cols-4 gap-4">
+        <section className="grid md:grid-cols-4 grid-cols-2 gap-4">
           {bonus.map((items) => {
             return (
               <div key={items.id} className="bg-white ">
@@ -479,7 +484,7 @@ const recommended = [
         {/* Bonus */}
 
         {/* brands */}
-        <section className="grid grid-cols-6 my-3 grid-rows-2 h-[15rem]">
+        <section className="grid md:grid-cols-6 grid-cols-2 md:my-3 my-10 grid-rows-2 ">
           {brands.map((brand) => {
             return (
               <a
@@ -498,9 +503,11 @@ const recommended = [
 
         <section className="bg-white rounded-md p-3 mb">
           <header>
-            <h2 className='font-bold tex-sm mb-6'>Konga Online Shopping in Nigeria - Best Shopping Site</h2>
+            <h2 className="font-bold tex-sm mb-6">
+              Konga Online Shopping in Nigeria - Best Shopping Site
+            </h2>
           </header>
-          <p  className='text-[.84rem]'>
+          <p className="text-[.84rem]">
             Konga.com is Nigeria’s number one online Shopping destination.We
             pride ourselves in having everything you could possibly need for
             life and living at the best prices than anywhere else. Our access to
@@ -525,7 +532,8 @@ const recommended = [
         </section>
         {/* About Konga */}
       </main>
-      
     </div>
   );
 }
+
+

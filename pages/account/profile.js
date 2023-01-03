@@ -4,7 +4,44 @@ import { FaAngleRight } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg"
 import { BsBag, BsWallet2 } from "react-icons/bs";
 import {TbTruckDelivery} from 'react-icons/tb'
+import { useGetUserDataQuery } from "../../store/api";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import axios from 'axios'
 const Profile = () => {
+  const { data, error, isLoading } = useGetUserDataQuery();
+  const router = useRouter()
+  // useEffect(() => {
+    
+
+  const [details, setDetails] = useState({
+    firstname: data.message.firstname,
+    lastname: data.message.lastname,
+    email: data.message.email,
+    password: "",
+    newPassword: "",
+    confirmNewPassword: ""
+  })
+
+  const handleSubmit = async(event) => {
+    event.preventDefault()
+try {
+  
+  const res = await axios.put('/api/profile/user', details)
+  console.log(res)
+} catch (error) {
+  cosole.log(err)
+}
+
+  }
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDetails({ ...details, [name]: value });
+  };
+
+
     return (
       <>
         <Head>
@@ -94,7 +131,7 @@ const Profile = () => {
                 </h2>
               </header>
 
-              <div className="px-7">
+              <form className="px-7" onSubmit={handleSubmit}>
                 <div className="my-6">
                   <p className="text-[0.74rem] font-semibold mb-2">
                     First Name
@@ -103,6 +140,9 @@ const Profile = () => {
                     type="text"
                     className="outline-none border w-full block py-2 border-[#ccc] placeholder:text-sm rounded-sm pl-4"
                     placeholder="Enter First Name"
+                    value={details.firstname}
+                    name="firstname"
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="my-6">
@@ -111,6 +151,8 @@ const Profile = () => {
                     type="text"
                     className="outline-none border w-full block py-2 border-[#ccc] placeholder:text-sm rounded-sm pl-4"
                     placeholder="Enter Last Name"
+                    value={details.lastname}
+                    name="lastname"
                   />
                 </div>
                 <div className="my-6">
@@ -121,6 +163,9 @@ const Profile = () => {
                     type="text"
                     className="outline-none border w-full block py-2 border-[#ccc] placeholder:text-sm rounded-sm pl-4"
                     placeholder="Enter Email Address"
+                    value={details.email}
+                    name="email"
+                    onChange={handleChange}
                   />
                 </div>
 
@@ -132,6 +177,9 @@ const Profile = () => {
                     <input
                       type="password"
                       className="outline-none  w-full block placeholder:text-sm rounded-sm "
+                      value={details.password}
+                      name="password"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -143,6 +191,9 @@ const Profile = () => {
                     <input
                       type="password"
                       className="outline-none  w-full block placeholder:text-sm rounded-sm "
+                      value={details.newPassword}
+                      name="newPassword"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -154,6 +205,9 @@ const Profile = () => {
                     <input
                       type="password"
                       className="outline-none  w-full block placeholder:text-sm rounded-sm "
+                      value={details.confirmNewPassword}
+                      name="confirmNewPassword"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -161,7 +215,7 @@ const Profile = () => {
                 <button className="bg-[#33B27B] text-white font-bold py-2 block w-full">
                   Save Changes
                 </button>
-              </div>
+              </form>
             </section>
           </section>
         </main>

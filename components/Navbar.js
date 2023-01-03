@@ -5,8 +5,35 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineCreditCard, AiOutlineShoppingCart } from "react-icons/ai";
 import {GrLogout} from "react-icons/gr";
 import { IoLocationOutline } from "react-icons/io5";
-import {BiUser, BiWallet} from "react-icons/bi";
-const Navbar = ({setCollapse}) => {
+import { BiUser, BiWallet } from "react-icons/bi";
+import { useSelector, useDispatch } from "react-redux";
+import { useGetUserDataQuery } from "../store/userApiSlice";
+import { useState } from "react";
+import { useEffect } from "react";
+import MobileNav from "./MobileNav";
+const Navbar = ({ setCollapse , setCollapseCart}) => {
+  const { data, error, isLoading } = useGetUserDataQuery({
+    refetchOnMountOrArgChange: true,
+  });
+
+
+ const [total, setTotal] = useState(0)
+  const cart = useSelector((state) => state.cartSlice);
+
+  const getTotal = () => {
+    return cart.reduce(
+      (accumulator, item) => setTotal(accumulator + item.quantity)
+      
+    );
+  };
+  useEffect(() => {
+
+   setTotal(cart.reduce((accumulator, item) => accumulator + item.quantity, 0))
+  
+},[cart])
+
+
+ 
   const navImages1 = [
     "https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/assets/images/homepage/k_travels2.png",
     "https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/assets/images/homepage/kongafood.png",
@@ -31,35 +58,46 @@ const Navbar = ({setCollapse}) => {
       id: 1,
       icon: <BiUser className="mr-2 text-[.9rem]" />,
       text: "My Profile",
+      route: '/account/profile'
     },
     {
       id: 2,
       icon: <AiOutlineCreditCard className="mr-2 text-[.9rem]" />,
       text: "My Orders",
+      route: '/account/orders'
     },
     {
       id: 3,
       icon: <FaRegHeart className="mr-2 text-[.9rem]" />,
       text: "My Saved Items",
+      route: '/account/saved'
     },
     {
       id: 4,
       icon: <BiWallet className="mr-2 text-[.9rem]" />,
       text: "My Wallet",
+      route: '/account/wallet'
     },
     {
       id: 5,
       icon: <IoLocationOutline className="mr-2 text-[.9rem] text-[#fba100]" />,
       text: "Track My Order",
+      route: '/account/order'
     },
     {
       id: 6,
       icon: <GrLogout className="mr-2 text-[.9rem]" />,
       text: "Logout",
+      route: '/logout'
     },
   ];
+
+
   return (
-    <section>
+
+    <>
+    <MobileNav/>
+    <section className="md:block hidden">
       <nav className="flex justify-center py-4 bg-[#F6F6F6]">
         <ul className="flex justify-evenly w-9/12">
           {navImages1.map((img, index) => {
@@ -89,14 +127,14 @@ const Navbar = ({setCollapse}) => {
         <ul className="flex items-center justify-between w-[90%]">
           <li className="h-full">
             <Link href="/">
-              <a className=" text-white hover:text-[#ed017f] hover:bg-white py-2 px-2 h-full transition-all duration-700">
+              <a className=" text-white hover:text-[#ed017f] hover:bg-white py-2 px-2 h-full transition-all duration-700 text-[.7rem]">
                 Store Locator
               </a>
             </Link>
           </li>
           <li>
             <Link href="/">
-              <a className=" text-white hover:text-[#ed017f] hover:bg-white py-2 px-2 transition-all duration-700">
+              <a className=" text-white hover:text-[#ed017f] hover:bg-white py-2 px-2 transition-all duration-700 text-[.7rem]">
                 Sell on Konga
               </a>
             </Link>
@@ -117,45 +155,56 @@ const Navbar = ({setCollapse}) => {
 
           <li>
             <Link href="/">
-              <a className="flex items-center text-white hover:text-[#ed017f] hover:bg-white py-4 px-2 ">
+              <a className="flex items-center text-white hover:text-[#ed017f] hover:bg-white py-4 px-2 text-[.7rem]">
                 <FaQuestionCircle className="mr-2 text-lg " />
                 Help
                 <MdOutlineKeyboardArrowDown />
               </a>
             </Link>
           </li>
-          <li className="relative account">
-            <button onClick={() => setCollapse(false)}>
-              <p className="text-white py-4 hover:bg-white hover:text-[#ed017f] px-2 transition-all duration-500">
-                Login/Signup
-              </p>
-            </button>
+          {data ? (
+            <li className="relative account">
+             
+                <p className="text-white py-4 hover:bg-white hover:text-[#ed017f] px-2 transition-all duration-500 text-[.7rem]">
+                  My Account
+                </p>
+             
 
-            <ul className="absolute bg-white drop-menu w-48">
-              <li className="p-2 font-[600] hover:bg-[#f8f8f8] hover:text-[#ed017f]">
-                Hi Chibuike
-              </li>
-              {dropDown.map((link)=>{
-                return (
-                  <li className={link.id === 6 ? "bg-[#fff5e3]" : ""}>
-                    <Link href="" key={link.id}>
-                      <a className="text-[.78rem] hover:bg-[#f8f8f8]  hover:text-[#ed017f] flex items-center py-3 p-2">
-                        {" "}
-                        {link.icon}
-                        {link.text}
-                      </a>
-                    </Link>
-                  </li>
-                );
-              })}
-            
-            </ul>
-          </li>
+              <ul className="absolute bg-white drop-menu w-48">
+                <li className="p-2 font-[600] hover:bg-[#f8f8f8] hover:text-[#ed017f]">
+                  Hi Chibuike
+                </li>
+                {dropDown.map((link, index) => {
+                  return (
+                    <li
+                      className={link.id === 6 ? "bg-[#fff5e3]" : ""}
+                      key={index}
+                    >
+                      <Link href={link.route} key={link.id}>
+                        <a className="text-[.78rem] hover:bg-[#f8f8f8]  hover:text-[#ed017f] flex items-center py-3 p-2">
+                          {" "}
+                          {link.icon}
+                          {link.text}
+                        </a>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          ) : (
+              <li className="text-white py-4 hover:bg-white hover:text-[#ed017f] px-2 transition-all duration-500 text-[.7rem]">
+                <button onClick={() => setCollapse(false)}>
+                  
+              Login/Signup
+                 </button>
+            </li>
+          )}
           <li>
-            <button className="bg-[#31AC77] flex items-center py-2 w-[9rem] justify-evenly  rounded-sm text-white text-[1rem] hover:bg-[#248259] transition-all ">
+            <button className="bg-[#31AC77] flex items-center py-2 w-[9rem] justify-evenly  rounded-sm text-white text-[1rem] hover:bg-[#248259] transition-all " onClick={()=>setCollapseCart(false)}>
               <AiOutlineShoppingCart />
               My Cart
-              <span className="text-black bg-white px-2 rounded-[4px]">0</span>
+              <span className="text-black bg-white px-2 rounded-[4px]">{total}</span>
             </button>
           </li>
         </ul>
@@ -172,7 +221,7 @@ const Navbar = ({setCollapse}) => {
                 key={index}
                 className={`text-white text-[.7rem] hover:text-[#111] hover:bg-white py-2 px-2 transition-all duration-700 `}
               >
-                <Link href="/">
+                <Link href="/products">
                   <a>{items}</a>
                 </Link>
               </li>
@@ -181,6 +230,7 @@ const Navbar = ({setCollapse}) => {
         </ul>
       </nav>
     </section>
+    </>
   );
 };
 

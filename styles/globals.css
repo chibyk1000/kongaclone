@@ -119,6 +119,29 @@ right: 0 ;
 .popular:hover .cat{
 display: block
 }
+
+.dashboard{
+background-color: #f1efef;
+  z-index: 20;
+}
+
+table {
+    border:2px solid;
+    padding:10px 40px; 
+    width:300px;
+    resize:both;
+    overflow:auto;
+}​
+
+.box {
+    background-color: var(--box-bg);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
