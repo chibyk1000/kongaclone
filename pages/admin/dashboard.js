@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import AdminLayout from "../../components/AdminLayout";
 import Sidebar from "../../components/Sidebar";
-import { useGetAdminDataQuery } from "../../store/api";
+import { useGetAdminDataQuery } from "../../store/userApiSlice";
 
 const Dashboard = () => {
   const { data, isLoading, error } = useGetAdminDataQuery({

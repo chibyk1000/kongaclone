@@ -17,4 +17,4 @@ export const userFetch = createApi({
   }),
 });
 
-export const {  useGetProductsQuery, useGetProductQuery } = userFetch;
+export const {  useGetProductsQuery, useGetProductQuery, } = userFetch;

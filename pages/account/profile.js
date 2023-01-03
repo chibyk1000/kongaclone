@@ -4,7 +4,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg"
 import { BsBag, BsWallet2 } from "react-icons/bs";
 import {TbTruckDelivery} from 'react-icons/tb'
-import { useGetUserDataQuery } from "../../store/api";
+import { useGetUserDataQuery } from "../../store/userApiSlice";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from 'axios'

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch, connect } from "react-redux";
-import { setLoggedin } from "../store/userSlice";
-import { wrapper } from "../store/store";
+
+
 import axios from "axios";
 
 const Login = ({ collapse, setCollapse }) => {
@@ -32,7 +32,7 @@ const Login = ({ collapse, setCollapse }) => {
       // await res.json()
       if (res.status === 200) {
         console.log(res);
-        dispatch(setLoggedin(true))
+      
         setCollapse(true)
         router.reload()
     
