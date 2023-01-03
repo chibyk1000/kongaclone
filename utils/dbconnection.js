@@ -5,7 +5,7 @@ const connectDB = () => {
 
     mongoose
       .connect(  
-        process.env.MONGODB_URI,
+        process.env.MONGODB_URL,
         {
           useNewUrlParser: true,
         }
