@@ -13,6 +13,11 @@ const Signup = () => {
     
   })
 
+    const handleChange = (e) => { 
+    const { name, value } = e.target
+    setInput({...input, [name]:value})
+    
+  }
   const [showPass, setShowPass] = useState(false)
 
   const [error, setError] = useState({
@@ -23,11 +28,7 @@ const Signup = () => {
     password: "",
   });
   
-  const handleChange = (e) => { 
-    const { name, value } = e.target
-    setInput({...input, [name]:value})
-    
-  }
+ 
   const handleSubmit = (e) => { 
     e.preventDefault()
   let res =  fetch('/api/auth/adminregister', {

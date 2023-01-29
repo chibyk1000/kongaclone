@@ -17,7 +17,7 @@ const Product = () => {
   const { data, isLoading, error } = useGetProductQuery(id)
   
 
-  const itemExists = cart.find((item) => item?.title === id);
+  const itemExists = cart?.find((item) => item?.title === id);
   
     if (isLoading) {
       return (
@@ -71,39 +71,39 @@ const Product = () => {
 
       <section className="grid grid-cols-2 w-[90%] gap-3 p-10 m-auto bg-white items-center">
         <section className="h-[60%]">
-          <ProductSlider img={data.image} />
+          <ProductSlider img={data?.image} />
         </section>
         <section>
           <div className="border-b p-2">
-            <h2 className="font-semibold text-3xl ">{data.title}</h2>
+            <h2 className="font-semibold text-3xl ">{data?.title}</h2>
             <p className="text-[#B5B5A8] text-[.8rem] my-3">
               Product Code:{" "}
-              <span className="font-bold text-black">{data.product_code}</span>{" "}
+              <span className="font-bold text-black">{data?.product_code}</span>{" "}
             </p>
             <p className="text-[#B5B5A8] text-[.8rem] ">
               Brand:{" "}
               <Link href="">
-                <a className="text-blue-900 font-bold"> {data.brand}</a>
+                <a className="text-blue-900 font-bold"> {data?.brand}</a>
               </Link>{" "}
             </p>
           </div>
           <div className="p-3 py-5 border-b">
             <span className="font-bold text-[1.4rem] mr-5">
               ₦
-              {data.discount_price || data.discount_price != 0
-                ? new Intl.NumberFormat().format(data.discount_price)
-                : new Intl.NumberFormat().format(data.price)}
+              {data?.discount_price || data?.discount_price != 0
+                ? new Intl.NumberFormat().format(data?.discount_price)
+                : new Intl.NumberFormat().format(data?.price)}
             </span>
             <span className="line-through text-gray-400 text-[1rem]">
               
               {data.discount_price >0
-                ? '₦' + new Intl.NumberFormat().format(data.price)
+                ? '₦' + new Intl.NumberFormat().format(data?.price)
                 : ""}
             </span>
 
             {data.discount_price ? (
               <span className="text-[#33B27B] ml-5 font-bold text-[.8rem]">
-                You save ₦{data.price - data.discount_price}
+                You save ₦{data?.price - data?.discount_price}
               </span>
             ) : (
               ""

@@ -31,7 +31,7 @@ const Counter = ({ item}) => {
           -
         </button>
         <span className="text-[1rem] text-center border-r">
-          {item.quantity ||num}
+          {item?.quantity ||num}
         </span>
         <button onClick={handleIncrease} className="font-bold  text-[#B5B5A8]">
           +
