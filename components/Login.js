@@ -13,7 +13,7 @@ const Login = ({ collapse, setCollapse }) => {
   
   const router = useRouter();
 
-  // console.log(loggedin, isloading);
+
   const [input, setInput] = useState({
     emailorphone: "",
 
@@ -31,7 +31,7 @@ const Login = ({ collapse, setCollapse }) => {
       });
       // await res.json()
       if (res.status === 200) {
-        console.log(res);
+      
       
         setCollapse(true)
         router.reload()

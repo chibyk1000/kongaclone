@@ -28,8 +28,8 @@ const Slider = () => {
       navigation={{
         enabled: true,
       }}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSlideChange={() =>{} }
+      onSwiper={(swiper) => {}}
     >
       {sliderImage.map((image, i) => {
         return (

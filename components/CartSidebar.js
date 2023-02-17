@@ -23,7 +23,7 @@ const CartSidbar = ({ collapse, setCollapse, data }) => {
       0
     );
   };
-  console.log(getTotalPrice())
+
 
   return (
     <>

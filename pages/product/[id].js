@@ -13,7 +13,7 @@ const Product = () => {
   const { id } = router.query
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cartSlice)
-  // console.log(cart)
+
   const { data, isLoading, error } = useGetProductQuery(id)
   
 

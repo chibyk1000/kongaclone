@@ -10,7 +10,7 @@ import { useState } from "react";
 const MobileNav = () => {
 
   const [collapse, setCollapse] = useState(true)
-  console.log(collapse)
+
   return (
 
       <header className="py-2 block md:hidden sticky top-0 bg-white z-30 ">

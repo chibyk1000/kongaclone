@@ -21,7 +21,7 @@ export default function App() {
 const [items, setItems] = useState([])
 
     const  cart = useSelector((state) => state.cartSlice)
-    // console.log(cart)
+
 
       const getTotalPrice = () => {
         return cart.reduce(
