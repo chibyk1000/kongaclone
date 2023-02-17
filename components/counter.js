@@ -4,14 +4,14 @@ import { incrementQuantity, decrementQuantity, addToCart } from "../store/cartSl
 const Counter = ({ item}) => {
   const dispatch = useDispatch()
   
-  const quantity =  item.quantity|| 0;
+  const quantity =  item?.quantity|| 0;
     const [num, setNum] = useState(quantity)
   const handleIncrease = () => {
   if (!item) {
     setNum((prev) => prev + 1);
     return
   }
-    dispatch(incrementQuantity(item._id))
+    dispatch(incrementQuantity(item?._id))
    
     }
     const handleDecrease = () => {
@@ -19,7 +19,7 @@ const Counter = ({ item}) => {
         setNum((prev) => prev - 1)
         return
       }
-      dispatch(decrementQuantity(item._id));
+      dispatch(decrementQuantity(item?._id));
    
      }
     return (
