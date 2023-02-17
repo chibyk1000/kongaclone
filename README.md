@@ -13,7 +13,7 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can als visit [http://kongaclone.vercel.app/] on your browser to see it
+You can als visit [https://kongaclone.vercel.app/] on your browser to see it
 
 
 
